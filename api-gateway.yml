@@ -38,7 +38,7 @@ eureka:
 
 # Remaining properties are used by the OAuth2 SSO to determine where the authorization server is and
 # what client crendentials to use to access that server.
-security:
+spring:
   oauth2:
     sso:
       home:
@@ -57,12 +57,11 @@ security:
     resource: 
       userInfoUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/me
       preferTokenInfo: false 
-
-spring:
+    
 # Datasource and JPA configuration to be used for using the same tokenstore as the authorization server for
 # the defined resource server. Note that there can't be 2 different root nodes, so datasource falls under the "spring" node.
   datasource:
-    url: jdbc:mysql://localhost:3306/auth
+    url: jdbc:mysql://docker:3306/auth
     username: root
     password: password
     driver-class: com.mysql.jdbc.Driver
