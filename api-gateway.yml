@@ -23,7 +23,7 @@ zuul:
     user: 
       path: /api/loggedinuser/**
       stripPrefix: true
-      url: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}
+      url: http://localhost:8899/userauth
 # Define the Eureka server that handles service registration
 eureka:
   client:
@@ -46,8 +46,10 @@ security:
         secure: false
         path: /,/**/*.html
     client:
-      accessTokenUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/token
-      userAuthorizationUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/authorize
+      #accessTokenUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/token
+      #userAuthorizationUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/oauth/authorize
+      accessTokenUri: http://localhost:8899/userauth/oauth/token
+      userAuthorizationUri: http://localhost:8899/userauth/oauth/authorize
       clientId: client
       clientSecret: secret
       scope: read
@@ -57,7 +59,7 @@ security:
 
 # Note that the "/user" endpoint needs to provide the principle of the logged in user (/me endpoint)
     resource: 
-      userInfoUri: http://${authserver.hostname}:${authserver.port}/${authserver.contextPath}/me
+      userInfoUri: http://localhost:8899/userauth/me
       preferTokenInfo: false 
 spring:
 # Datasource and JPA configuration to be used for using the same tokenstore as the authorization server for
